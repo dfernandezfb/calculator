@@ -82,6 +82,24 @@ const Calculator = () => {
                         });
                     }
                     break;
+                case "*":
+                    if (!aux) {
+                        setOperationData({
+                            ...operationData,
+                            savedValue: savedValue==0?Number.parseInt(outcome):Number.parseInt(savedValue)*Number.parseInt(outcome),
+                            operation: "pro",
+                            flag: 1,
+                        });
+                    } else {
+                        setOperationData({
+                            ...operationData,
+                            savedValue: outcome,
+                            operation: "pro",
+                            flag: 1,
+                            aux: false,
+                        });
+                    }
+                    break;
                 case "=":
                     if (operation === "sum") {
                         setOperationData({
@@ -94,6 +112,13 @@ const Calculator = () => {
                         setOperationData({
                             ...operationData,
                             outcome: Number.parseInt(savedValue) - Number.parseInt(outcome),
+                            aux: true,
+                        });
+                    }
+                    if (operation === "pro") {
+                        setOperationData({
+                            ...operationData,
+                            outcome: Number.parseInt(savedValue) * Number.parseInt(outcome),
                             aux: true,
                         });
                     }
